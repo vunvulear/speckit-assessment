@@ -6,6 +6,48 @@ The goal: **determine whether SpecKit extensions (DocGuard, Sync, Verify, Drift)
 
 ---
 
+## Verdict
+
+**Extensions wins 5 of 8 categories, ties 2, loses 1.**
+
+The extensions produce a more production-ready, cognitively simpler, and well-documented project. Base SpecKit produces slightly cleaner code under traditional linting but lacks operational maturity artifacts and has 43% higher cognitive complexity.
+
+The most impactful finding: **Halstead metrics revealed the functional architecture (Extensions) requires 43% less cognitive effort to understand** — a dimension traditional linting tools don't capture.
+
+---
+
+## Key Results
+
+### Scoring Summary (8 categories, 30+ metrics)
+
+| Category | SpecKit | Extensions | Winner |
+|----------|---------|------------|--------|
+| Code Quality (Pylint + Flake8 + CC) | 9.0 | 8.5 | SpecKit |
+| Cognitive Complexity (Halstead) | 7.0 | 9.5 | **Extensions** |
+| Test Quality | 7.5 | 9.0 | **Extensions** |
+| Documentation | 5.0 | 9.5 | **Extensions** |
+| Maintainability (MI + Lizard) | 8.5 | 8.5 | Tie |
+| Architecture (cohesion + coupling) | 7.5 | 8.0 | **Extensions** |
+| Security (Bandit) | 9.0 | 9.0 | Tie |
+| Project Maturity | 4.0 | 9.5 | **Extensions** |
+| **Weighted Total** | **7.19** | **9.00** | **Extensions** |
+
+### Headline Metrics
+
+| Metric | SpecKit | Extensions |
+|--------|---------|------------|
+| Pylint Score | **9.68**/10 | 9.32/10 |
+| Halstead Effort | 2,664 | **1,526** (-43%) |
+| Test Count | 65 | **102** (+57%) |
+| Test Coverage | **94.29%** | 92.24% |
+| Documentation Artifacts | 9 | **22** (+144%) |
+| DocGuard Score | N/A | **88/100 (A)** |
+| Predicted Bugs (Halstead) | 0.204 | **0.174** (-15%) |
+
+> **For the full 430-line breakdown with per-tool analysis, hotspot identification, and methodology details, see [`comparison-report.md`](comparison-report.md).**
+
+---
+
 ## Project Requirements (Original Request)
 
 > Build a web app that measures latency across all Azure, AWS, and GCP regions worldwide. Every 10 seconds, the data is refreshed. Display a chart showing average latency per vendor and closest region latency per vendor. Table above sorted lowest to highest latency per cloud region. Page auto-updates on new data.
@@ -94,44 +136,6 @@ pip install radon pylint flake8 interrogate bandit vulture lizard cohesion
 | **Cohesion** | Class method-attribute cohesion % |
 | **pytest-cov** | Test line coverage % |
 | **Custom AST analysis** | Import coupling and dependency density |
-
----
-
-## Key Results
-
-### Scoring Summary (8 categories, 30+ metrics)
-
-| Category | SpecKit | Extensions | Winner |
-|----------|---------|------------|--------|
-| Code Quality (Pylint + Flake8 + CC) | 9.0 | 8.5 | SpecKit |
-| Cognitive Complexity (Halstead) | 7.0 | 9.5 | **Extensions** |
-| Test Quality | 7.5 | 9.0 | **Extensions** |
-| Documentation | 5.0 | 9.5 | **Extensions** |
-| Maintainability (MI + Lizard) | 8.5 | 8.5 | Tie |
-| Architecture (cohesion + coupling) | 7.5 | 8.0 | **Extensions** |
-| Security (Bandit) | 9.0 | 9.0 | Tie |
-| Project Maturity | 4.0 | 9.5 | **Extensions** |
-| **Weighted Total** | **7.19** | **9.00** | **Extensions** |
-
-### Headline Metrics
-
-| Metric | SpecKit | Extensions |
-|--------|---------|------------|
-| Pylint Score | **9.68**/10 | 9.32/10 |
-| Halstead Effort | 2,664 | **1,526** (-43%) |
-| Test Count | 65 | **102** (+57%) |
-| Test Coverage | **94.29%** | 92.24% |
-| Documentation Artifacts | 9 | **22** (+144%) |
-| DocGuard Score | N/A | **88/100 (A)** |
-| Predicted Bugs (Halstead) | 0.204 | **0.174** (-15%) |
-
-### Verdict
-
-**Extensions wins 5 of 8 categories, ties 2, loses 1.**
-
-The extensions produce a more production-ready, cognitively simpler, and well-documented project. Base SpecKit produces slightly cleaner code under traditional linting but lacks operational maturity artifacts and has 43% higher cognitive complexity.
-
-The most impactful finding: **Halstead metrics revealed the functional architecture (Extensions) requires 43% less cognitive effort to understand** — a dimension traditional linting tools don't capture.
 
 ---
 
