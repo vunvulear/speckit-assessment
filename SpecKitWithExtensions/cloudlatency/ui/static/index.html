@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudLatency — Real-Time Cloud Region Latency</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+</head>
+<body>
+    <header>
+        <h1>CloudLatency</h1>
+        <p class="subtitle">Real-time HTTPS latency to Azure, AWS &amp; GCP regions</p>
+        <div class="status-bar">
+            <span id="last-updated">Waiting for data...</span>
+            <span id="region-count"></span>
+            <span id="connection-status" class="status-dot status-connecting" title="Connecting..."></span>
+        </div>
+    </header>
+
+    <main>
+        <section class="charts-container">
+            <div class="chart-card">
+                <h2>Average Latency by Vendor</h2>
+                <canvas id="avg-chart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h2>Closest Region by Vendor</h2>
+                <canvas id="closest-chart"></canvas>
+            </div>
+        </section>
+
+        <section class="table-container">
+            <h2>All Regions <span id="table-count" class="badge"></span></h2>
+            <div class="table-scroll">
+                <table id="latency-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Provider</th>
+                            <th>Region</th>
+                            <th>Code</th>
+                            <th>Latency (ms)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="latency-tbody">
+                        <tr><td colspan="6" class="loading">Loading latency data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>CloudLatency v0.1.0 — Auto-refreshes every 10s via SSE</p>
+    </footer>
+
+    <script src="/app.js"></script>
+</body>
+</html>

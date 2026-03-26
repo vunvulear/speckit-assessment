@@ -1,0 +1,226 @@
+/* CloudLatency — Clean minimal design */
+
+:root {
+    --bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text: #212529;
+    --text-muted: #6c757d;
+    --border: #dee2e6;
+    --accent: #0d6efd;
+    --aws-color: #ff9900;
+    --azure-color: #0078d4;
+    --gcp-color: #4285f4;
+    --success: #198754;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --radius: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 1.25rem 2rem;
+    box-shadow: var(--shadow);
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: inline;
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-connected { background: var(--success); }
+.status-connecting { background: var(--warning); }
+.status-disconnected { background: var(--danger); }
+
+/* Main layout */
+main {
+    max-width: 1400px;
+    margin: 1.5rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Charts */
+.charts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.chart-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+}
+
+.chart-card h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.chart-card canvas {
+    max-height: 250px;
+}
+
+/* Table */
+.table-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+}
+
+.table-container h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.badge {
+    background: var(--accent);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+th {
+    background: var(--bg);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+}
+
+td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+    background: #f8f9fb;
+}
+
+tbody tr:hover {
+    background: #e9ecef;
+}
+
+tr.unreachable {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+tr.unreachable td:nth-child(5) {
+    color: var(--danger);
+}
+
+.provider-badge {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+}
+
+.provider-aws { background: var(--aws-color); }
+.provider-azure { background: var(--azure-color); }
+.provider-gcp { background: var(--gcp-color); }
+
+.status-icon { font-size: 0.9rem; }
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 1rem;
+    }
+
+    main {
+        padding: 0 0.75rem;
+    }
+}

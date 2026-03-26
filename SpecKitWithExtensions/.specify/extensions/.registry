@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "extensions": {
+    "docguard": {
+      "version": "0.9.9",
+      "source": "local",
+      "manifest_hash": "sha256:97a3c766dcacf940a074d3a374a29c173336ac8bc7d044646d7ff7b653ef63ce",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "windsurf": [
+          "speckit.docguard.guard",
+          "docguard.guard",
+          "speckit.docguard.fix",
+          "docguard.fix",
+          "speckit.docguard.review",
+          "docguard.review",
+          "speckit.docguard.score",
+          "docguard.score",
+          "speckit.docguard.diagnose",
+          "speckit.docguard.generate"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-03-26T17:03:15.529856+00:00"
+    },
+    "verify": {
+      "version": "1.0.1",
+      "source": "local",
+      "manifest_hash": "sha256:970f238fae1cb408cb63ff25bc080ed185da656194de3b8b663923883eb325b7",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "windsurf": [
+          "speckit.verify.run",
+          "speckit.verify"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-03-26T17:03:16.784408+00:00"
+    },
+    "verify-tasks": {
+      "version": "1.0.0",
+      "source": "local",
+      "manifest_hash": "sha256:5225959adb04e1d2882583d912795973e2591f9f079fcff9840bbeb566699696",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "windsurf": [
+          "speckit.verify-tasks.run",
+          "speckit.verify-tasks"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-03-26T17:03:17.950598+00:00"
+    },
+    "sync": {
+      "version": "0.1.0",
+      "source": "local",
+      "manifest_hash": "sha256:867ab92e505e8bd50d284f33c61b4e2d8423aea9d796c9c7575480ea44053f48",
+      "enabled": true,
+      "priority": 10,
+      "registered_commands": {
+        "windsurf": [
+          "speckit.sync.analyze",
+          "speckit.drift",
+          "speckit.sync.propose",
+          "speckit.sync.apply",
+          "speckit.sync.conflicts",
+          "speckit.sync.backfill"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-03-26T17:03:19.804926+00:00"
+    }
+  }
+}

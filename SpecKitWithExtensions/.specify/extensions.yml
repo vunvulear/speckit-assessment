@@ -1,0 +1,49 @@
+installed: []
+settings:
+  auto_execute_hooks: true
+hooks:
+  after_implement:
+  - extension: docguard
+    command: speckit.docguard.guard
+    enabled: true
+    optional: true
+    prompt: Run DocGuard validation after implementation?
+    description: Quality gate â€” ensures docs stay in sync with code
+    condition: null
+  - extension: verify
+    command: speckit.verify.run
+    enabled: true
+    optional: true
+    prompt: Run verify to validate implementation against specification?
+    description: Post-implementation verification gate
+    condition: null
+  - extension: verify-tasks
+    command: speckit.verify-tasks.run
+    enabled: true
+    optional: true
+    prompt: Run verify-tasks in a fresh session to check for phantom completions
+    description: Post-implementation phantom completion detector
+    condition: null
+  - extension: sync
+    command: speckit.sync.analyze
+    enabled: true
+    optional: true
+    prompt: Check for spec drift after implementation?
+    description: ''
+    condition: null
+  before_tasks:
+  - extension: docguard
+    command: speckit.docguard.review
+    enabled: true
+    optional: true
+    prompt: Review documentation consistency before generating tasks?
+    description: ''
+    condition: null
+  after_tasks:
+  - extension: docguard
+    command: speckit.docguard.score
+    enabled: true
+    optional: true
+    prompt: Show CDD maturity score after task generation?
+    description: ''
+    condition: null

@@ -1,0 +1,33 @@
+[project]
+name = "cloudlatency"
+version = "0.1.0"
+description = "Real-time HTTPS latency monitoring for Azure, AWS, and GCP regions"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=cloudlatency --cov-report=term-missing --cov-fail-under=90"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP"]
+
+[tool.black]
+target-version = ["py311"]
+line-length = 120
+
+[tool.coverage.run]
+source = ["cloudlatency"]
+omit = ["cloudlatency/ui/*", "cloudlatency/main.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.",
+    "if TYPE_CHECKING:",
+]
