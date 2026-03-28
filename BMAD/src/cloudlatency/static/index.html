@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudLatency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-surface: #1e293b;
+            --bg-header: #0f172a;
+            --bg-row-alt: #1a2332;
+            --color-aws: #ff9900;
+            --color-azure: #0078d4;
+            --color-gcp: #4285f4;
+            --color-ok: #22c55e;
+            --color-slow: #f59e0b;
+            --color-unreachable: #ef4444;
+            --color-text: #e2e8f0;
+            --color-text-muted: #94a3b8;
+            --color-fresh: #22c55e;
+            --color-stale: #f59e0b;
+            --color-old: #ef4444;
+        }
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #f8fafc;
+                --bg-surface: #ffffff;
+                --bg-header: #f1f5f9;
+                --bg-row-alt: #f8fafc;
+                --color-text: #1e293b;
+                --color-text-muted: #64748b;
+            }
+        }
+        body {
+            background: var(--bg-primary);
+            color: var(--color-text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .font-mono-latency {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+            font-variant-numeric: tabular-nums;
+        }
+        .provider-aws { border-left-color: var(--color-aws); color: var(--color-aws); }
+        .provider-azure { border-left-color: var(--color-azure); color: var(--color-azure); }
+        .provider-gcp { border-left-color: var(--color-gcp); color: var(--color-gcp); }
+        .badge-ok { background: rgba(34,197,94,0.15); color: var(--color-ok); }
+        .badge-slow { background: rgba(245,158,11,0.15); color: var(--color-slow); }
+        .badge-unreachable { background: rgba(239,68,68,0.15); color: var(--color-unreachable); }
+        .status-dot {
+            width: 8px; height: 8px; border-radius: 50%; display: inline-block;
+        }
+        .status-dot.connected { background: var(--color-ok); }
+        .status-dot.reconnecting { background: var(--color-slow); animation: pulse 1.5s infinite; }
+        .status-dot.disconnected { background: var(--color-unreachable); }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+        @media (prefers-reduced-motion: reduce) {
+            .status-dot.reconnecting { animation: none; }
+            .fade-in { animation: none !important; }
+        }
+        .fade-in { animation: fadeIn 150ms ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        thead th { position: sticky; top: 0; z-index: 10; background: var(--bg-header); }
+        tr:nth-child(even) td { background: var(--bg-row-alt); }
+        .ts-fresh { color: var(--color-fresh); }
+        .ts-stale { color: var(--color-slow); }
+        .ts-old { color: var(--color-unreachable); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header Bar (UX-DR2, 48px, fixed) -->
+    <header role="banner" class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6"
+            style="height:48px; background:var(--bg-header); border-bottom:1px solid rgba(255,255,255,0.08);">
+        <h1 class="text-base font-semibold tracking-tight" style="color:var(--color-text);">CloudLatency</h1>
+        <div class="flex items-center gap-3 text-sm">
+            <div role="status" aria-live="polite" id="connection-status" class="flex items-center gap-1.5">
+                <span class="status-dot disconnected" id="status-dot"></span>
+                <span id="status-label" style="color:var(--color-text-muted);">Connecting...</span>
+            </div>
+            <span id="timestamp" class="ts-old" style="color:var(--color-text-muted);">—</span>
+        </div>
+    </header>
+
+    <main class="pt-[48px]">
+        <!-- Summary Banner (UX-DR3, 3 columns) -->
+        <section role="complementary" aria-label="Provider summary"
+                 class="grid grid-cols-1 md:grid-cols-3 gap-px"
+                 style="background:var(--bg-surface); border-bottom:1px solid rgba(255,255,255,0.06);"
+                 id="summary-banner">
+            <div class="flex items-center gap-3 px-4 py-2" style="min-height:36px; border-left:3px solid var(--color-aws);">
+                <span class="text-xs font-bold uppercase" style="color:var(--color-aws);">AWS</span>
+                <span class="text-xs" style="color:var(--color-text-muted);">Avg: <span id="aws-avg" class="font-mono-latency">—</span></span>
+                <span class="text-xs" style="color:var(--color-text-muted);">Closest: <span id="aws-closest" class="font-mono-latency">—</span></span>
+            </div>
+            <div class="flex items-center gap-3 px-4 py-2" style="min-height:36px; border-left:3px solid var(--color-azure);">
+                <span class="text-xs font-bold uppercase" style="color:var(--color-azure);">Azure</span>
+                <span class="text-xs" style="color:var(--color-text-muted);">Avg: <span id="azure-avg" class="font-mono-latency">—</span></span>
+                <span class="text-xs" style="color:var(--color-text-muted);">Closest: <span id="azure-closest" class="font-mono-latency">—</span></span>
+            </div>
+            <div class="flex items-center gap-3 px-4 py-2" style="min-height:36px; border-left:3px solid var(--color-gcp);">
+                <span class="text-xs font-bold uppercase" style="color:var(--color-gcp);">GCP</span>
+                <span class="text-xs" style="color:var(--color-text-muted);">Avg: <span id="gcp-avg" class="font-mono-latency">—</span></span>
+                <span class="text-xs" style="color:var(--color-text-muted);">Closest: <span id="gcp-closest" class="font-mono-latency">—</span></span>
+            </div>
+        </section>
+
+        <!-- Latency Table (UX-DR4) -->
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm" id="latency-table">
+                <thead>
+                    <tr style="color:var(--color-text-muted);">
+                        <th scope="col" class="text-left px-4 py-2 font-medium text-xs uppercase tracking-wider">Provider</th>
+                        <th scope="col" class="text-left px-4 py-2 font-medium text-xs uppercase tracking-wider">Region</th>
+                        <th scope="col" aria-sort="ascending" class="text-right px-4 py-2 font-medium text-xs uppercase tracking-wider">Latency</th>
+                        <th scope="col" class="text-left px-4 py-2 font-medium text-xs uppercase tracking-wider">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr id="empty-row">
+                        <td colspan="4" class="text-center py-8" style="color:var(--color-text-muted);">Waiting for data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

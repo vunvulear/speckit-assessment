@@ -1,0 +1,72 @@
+# generated: 2026-03-28
+# last_updated: 2026-03-28
+# project: windsurf-project-6
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: _bmad-output/implementation-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 2026-03-28
+last_updated: 2026-03-28T07:39:00
+project: windsurf-project-6
+project_key: NOKEY
+tracking_system: file-system
+story_location: _bmad-output/implementation-artifacts
+
+development_status:
+  # Epic 1: Instant Multi-Cloud Latency Measurement
+  epic-1: done
+  1-1-project-scaffolding-and-package-setup: done
+  1-2-cloud-region-endpoint-definitions: done
+  1-3-data-model-and-in-memory-store: done
+  1-4-async-probe-engine-with-concurrent-measurement: done
+  1-5-auto-refresh-probe-loop-and-structured-logging: done
+  1-6-cli-entry-point-and-application-lifecycle: done
+  epic-1-retrospective: optional
+
+  # Epic 2: Live Monitoring Dashboard
+  epic-2: done
+  2-1-sse-broadcaster-and-static-file-serving: done
+  2-2-html-page-structure-and-dark-theme-foundation: done
+  2-3-header-bar-with-connection-status-indicator: done
+  2-4-summary-banner-with-vendor-averages: done
+  2-5-latency-table-with-sorted-data-and-status-badges: done
+  2-6-sse-client-with-auto-reconnect-and-progressive-population: done
+  2-7-responsive-layout-and-accessibility-polish: done
+  epic-2-retrospective: optional
+
+  # Epic 3: REST API for External Consumers
+  epic-3: done
+  3-1-health-check-and-results-endpoints: done
+  3-2-filtered-results-and-summary-endpoints: done
+  3-3-sse-stream-for-api-consumers-and-error-format: done
+  3-4-api-documentation: done
+  epic-3-retrospective: optional

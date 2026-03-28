@@ -1,18 +1,18 @@
-# SpecKit vs SpecKit+Extensions — Quality Comparison Exercise
+# SpecKit vs SpecKit+Extensions vs BMAD — Quality Comparison Exercise
 
-This repository contains **two implementations of the same application** (CloudLatency) built using two different AI-assisted development workflows, plus an automated quality comparison measuring 30+ metrics across 14 tools.
+This repository contains **three implementations of the same application** (CloudLatency) built using three different AI-assisted development workflows, plus an automated quality comparison measuring 30+ metrics across 14 tools.
 
-The goal: **determine whether SpecKit extensions (DocGuard, Sync, Verify, Drift) produce measurably better output** compared to base SpecKit alone.
+The goal: **compare the code quality outcomes of SpecKit (base), SpecKit+Extensions (DocGuard, Sync, Verify, Drift), and BMAD** when given the same prompt.
 
 ---
 
 ## Verdict
 
-**Extensions wins 5 of 8 categories, ties 2, loses 1.**
+**Extensions wins 3 of 8 categories. BMAD wins 3. SpecKit wins 1. 1 is a 3-way tie.**
 
-The extensions produce a more production-ready, cognitively simpler, and well-documented project. Base SpecKit produces slightly cleaner code under traditional linting but lacks operational maturity artifacts and has 43% higher cognitive complexity.
+**Extensions** (9.00/10) leads overall thanks to documentation, project maturity, and architecture. **BMAD** (8.05/10) produces the most cognitively simple, well-tested, and compact code. **SpecKit** (7.19/10) produces the cleanest code under traditional linting but lacks both operational maturity and code simplicity.
 
-The most impactful finding: **Halstead metrics revealed the functional architecture (Extensions) requires 43% less cognitive effort to understand** — a dimension traditional linting tools don't capture.
+The most impactful finding: **Halstead metrics revealed BMAD's hybrid architecture requires 59% less cognitive effort than SpecKit and 29% less than Extensions** — a dimension traditional linting tools don't capture.
 
 ---
 
@@ -20,31 +20,31 @@ The most impactful finding: **Halstead metrics revealed the functional architect
 
 ### Scoring Summary (8 categories, 30+ metrics)
 
-| Category | SpecKit | Extensions | Winner |
-|----------|---------|------------|--------|
-| Code Quality (Pylint + Flake8 + CC) | 9.0 | 8.5 | SpecKit |
-| Cognitive Complexity (Halstead) | 7.0 | 9.5 | **Extensions** |
-| Test Quality | 7.5 | 9.0 | **Extensions** |
-| Documentation | 5.0 | 9.5 | **Extensions** |
-| Maintainability (MI + Lizard) | 8.5 | 8.5 | Tie |
-| Architecture (cohesion + coupling) | 7.5 | 8.0 | **Extensions** |
-| Security (Bandit) | 9.0 | 9.0 | Tie |
-| Project Maturity | 4.0 | 9.5 | **Extensions** |
-| **Weighted Total** | **7.19** | **9.00** | **Extensions** |
+| Category | SpecKit | Extensions | BMAD | Winner |
+|----------|---------|------------|------|--------|
+| Code Quality (Pylint + Flake8 + CC) | 9.0 | 8.5 | 7.0 | SpecKit |
+| Cognitive Complexity (Halstead) | 7.0 | 9.5 | 10.0 | **BMAD** |
+| Test Quality | 7.5 | 9.0 | 9.5 | **BMAD** |
+| Documentation | 5.0 | 9.5 | 6.5 | **Extensions** |
+| Maintainability (MI + Lizard) | 8.5 | 8.5 | 9.0 | **BMAD** |
+| Architecture (cohesion + coupling) | 7.5 | 8.0 | 7.5 | **Extensions** |
+| Security (Bandit) | 9.0 | 9.0 | 9.0 | 3-way Tie |
+| Project Maturity | 4.0 | 9.5 | 5.5 | **Extensions** |
+| **Weighted Total** | **7.19** | **9.00** | **8.05** | **Extensions** |
 
 ### Headline Metrics
 
-| Metric | SpecKit | Extensions |
-|--------|---------|------------|
-| Pylint Score | **9.68**/10 | 9.32/10 |
-| Halstead Effort | 2,664 | **1,526** (-43%) |
-| Test Count | 65 | **102** (+57%) |
-| Test Coverage | **94.29%** | 92.24% |
-| Documentation Artifacts | 9 | **22** (+144%) |
-| DocGuard Score | N/A | **88/100 (A)** |
-| Predicted Bugs (Halstead) | 0.204 | **0.174** (-15%) |
+| Metric | SpecKit | Extensions | BMAD |
+|--------|---------|------------|------|
+| Pylint Score | **9.68**/10 | 9.32/10 | 8.50/10 |
+| Halstead Effort | 2,664 | 1,526 | **1,090** (-59%) |
+| Test Count | 65 | 102 | **107** |
+| Test Coverage | 94.29% | 92.24% | **99.01%** |
+| Documentation Artifacts | 9 | **22** | ~10 |
+| Docstring Coverage | 90.8% | 92.7% | **96.1%** |
+| Predicted Bugs (Halstead) | 0.204 | 0.174 | **0.128** (-37%) |
 
-> **For the full 430-line breakdown with per-tool analysis, hotspot identification, and methodology details, see [`comparison-report.md`](comparison-report.md).**
+> **For the full 500+ line breakdown with per-tool analysis, hotspot identification, and methodology details, see [`comparison-report.md`](comparison-report.md).**
 
 ---
 
@@ -52,7 +52,7 @@ The most impactful finding: **Halstead metrics revealed the functional architect
 
 > Build a web app that measures latency across all Azure, AWS, and GCP regions worldwide. Every 10 seconds, the data is refreshed. Display a chart showing average latency per vendor and closest region latency per vendor. Table above sorted lowest to highest latency per cloud region. Page auto-updates on new data.
 
-This single prompt was given identically to both workflows (SpecKit and SpecKit+Extensions) to produce two independent implementations of the same application.
+This single prompt was given identically to all three workflows (SpecKit, SpecKit+Extensions, and BMAD) to produce three independent implementations of the same application.
 
 ---
 
@@ -83,7 +83,13 @@ A real-time web application that measures HTTPS latency to all Azure, AWS, and G
 │   ├── docs-canonical/         # ARCHITECTURE, SECURITY, DATA-MODEL, etc.
 │   └── journey.md              # Full development narrative
 │
-├── comparison-report.md        # Full quality comparison (430 lines, 30+ metrics)
+├── BMAD/                       # Built with BMAD methodology
+│   ├── src/cloudlatency/       # Hybrid architecture (classes + functions)
+│   ├── tests/                  # 107 tests, 99.01% coverage
+│   ├── _bmad-output/           # Planning artifacts (PRD, architecture, epics, UX)
+│   └── docs/api.md             # API documentation
+│
+├── comparison-report.md        # Full quality comparison (500+ lines, 30+ metrics)
 └── README.md                   # This file
 ```
 
@@ -94,7 +100,7 @@ A real-time web application that measures HTTPS latency to all Azure, AWS, and G
 ### SpecKit (Base) — 8 workflows
 
 | Workflow | Purpose |
-|----------|---------|
+|----------|---------- |
 | `speckit.constitution` | Establish project principles |
 | `speckit.specify` | Create feature specification |
 | `speckit.clarify` | Resolve spec ambiguities |
@@ -113,6 +119,14 @@ All base workflows plus:
 - **Verify** (2 workflows) — Post-implementation verification against specs
 - **Verify-Tasks** (2 workflows) — Phantom completion detection
 - **Additional** — `speckit.drift`, `speckit.checklist`, enhanced `speckit.verify`
+
+### BMAD — Agent-based methodology
+
+BMAD (BMad Agentic Development) uses a multi-agent approach with specialized roles (analyst, architect, developer, PM) and structured planning artifacts:
+
+- **Planning phase** — Product brief → PRD → Architecture → Epics → UX Design Spec → Implementation readiness report
+- **Implementation phase** — Sprint-based task execution with YAML status tracking
+- **Quality tools** — Ruff linting, pytest with coverage enforcement (≥90%)
 
 ---
 
@@ -153,6 +167,11 @@ python -m cloudlatency
 cd SpecKitWithExtensions
 pip install -r requirements.txt
 python -m cloudlatency.main
+
+# BMAD
+cd BMAD
+pip install -e .
+python -m cloudlatency
 ```
 
 ### Run the quality measurements
@@ -162,7 +181,7 @@ python -m cloudlatency.main
 pip install radon pylint flake8 interrogate bandit vulture lizard cohesion
 
 # Example: run all metrics on one project
-cd SpecKit  # or SpecKitWithExtensions
+cd SpecKit  # or SpecKitWithExtensions or BMAD
 
 radon cc <package> -a -s          # Cyclomatic complexity
 radon mi <package> -s             # Maintainability index
@@ -178,16 +197,16 @@ cohesion -d <package>             # Class cohesion
 pytest --cov=<package>            # Test coverage
 ```
 
-Where `<package>` is `src/cloudlatency` for SpecKit or `cloudlatency` for Extensions.
+Where `<package>` is `src/cloudlatency` for SpecKit and BMAD, or `cloudlatency` for Extensions.
 
 ---
 
 ## Detailed Report
 
-See [`comparison-report.md`](comparison-report.md) for the full 430-line report with per-tool breakdowns, analysis, and hotspot identification.
+See [`comparison-report.md`](comparison-report.md) for the full 500+ line report with per-tool breakdowns, analysis, and hotspot identification.
 
 ---
 
 ## License
 
-Both CloudLatency implementations are MIT licensed.
+The SpecKit and SpecKit+Extensions CloudLatency implementations are MIT licensed. BMAD's implementation uses MIT license per `pyproject.toml`.
