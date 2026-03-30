@@ -1,7 +1,7 @@
 # CloudLatency: SpecKit vs SpecKit+Extensions vs BMAD — Quality Comparison Report
 
-**Generated**: 2026-03-28  
-**Tools Used**: Radon (CC/MI/Halstead/Raw), Pylint, Flake8, Interrogate, Bandit, Vulture, Lizard, Cohesion, pytest-cov, custom import-coupling analysis  
+**Generated**: 2026-03-30
+**Tools Used**: Radon (CC/MI/Halstead/Raw), Pylint, Flake8, Interrogate, Bandit, Vulture, Lizard, Cohesion, pytest-cov, custom import-coupling analysis
 
 ---
 
@@ -11,9 +11,9 @@
 |--------|---------------|---------------------|------|--------|
 | **Pylint Score** | 9.68/10 | 9.32/10 | 8.50/10 | SpecKit |
 | **Avg Cyclomatic Complexity** | A (2.44) | A (2.70) | A (2.15) | BMAD |
-| **Maintainability Index (avg)** | A (76.4) | A (74.1) | A (70.2) | SpecKit |
+| **Maintainability Index (avg)** | A (76.4) | A (70.7) | A (70.2) | SpecKit |
 | **Docstring Coverage** | 90.8% | 92.7% | 96.1% | BMAD |
-| **Test Coverage** | 94.29% | 92.24% | 99.01% | BMAD |
+| **Test Coverage** | 94.27% | 92.24% | 99.01% | BMAD |
 | **Test Count** | 65 | 102 | 107 | BMAD |
 | **Test SLOC** | 838 | 1,142 | 912 | Extensions |
 | **Security Issues (Bandit)** | 1 MEDIUM | 1 MEDIUM | 1 MEDIUM | 3-way Tie |
@@ -21,10 +21,10 @@
 | **Flake8 Violations** | 29 | 50 | 125 | SpecKit |
 | **Halstead Total Volume** | 609.96 | 518.32 | 383.60 | BMAD |
 | **Halstead Total Effort** | 2,664.53 | 1,525.71 | 1,090.19 | BMAD |
-| **Halstead Est. Bugs** | 0.204 | 0.174 | 0.128 | BMAD |
-| **Lizard Avg NLOC/function** | 11.6 | 13.7 | 8.8 | BMAD |
-| **Lizard Avg CCN** | 2.6 | 3.1 | 2.2 | BMAD |
-| **Lizard Total Functions** | 58 | 29 | 36 | Extensions |
+| **Halstead Est. Bugs** | 0.203 | 0.173 | 0.128 | BMAD |
+| **Lizard Avg NLOC/function** | 11.0 | 13.7 | 8.8 | BMAD |
+| **Lizard Avg CCN** | 2.5 | 3.1 | 2.2 | BMAD |
+| **Lizard Total Functions** | 41 | 29 | 36 | SpecKit |
 | **Lizard Warnings** | 0 | 0 | 0 | 3-way Tie |
 | **Architectural Style** | OOP (classes) | Functional | Hybrid (classes + functions) | — |
 | **Class Cohesion (behavioral)** | 27–62% | N/A (no classes) | 42–100% | BMAD |
@@ -55,8 +55,8 @@ xychart-beta
     title "Category Scores (out of 10)"
     x-axis ["CQ:SK", "CQ:Ex", "CQ:BM", "Cg:SK", "Cg:Ex", "Cg:BM", "Ts:SK", "Ts:Ex", "Ts:BM", "Dc:SK", "Dc:Ex", "Dc:BM", "Mt:SK", "Mt:Ex", "Mt:BM", "Ar:SK", "Ar:Ex", "Ar:BM", "Sc:SK", "Sc:Ex", "Sc:BM", "PM:SK", "PM:Ex", "PM:BM"]
     y-axis "Score" 0 --> 10
-    bar [9.0, 0, 0, 7.0, 0, 0, 7.5, 0, 0, 5.0, 0, 0, 8.5, 0, 0, 7.5, 0, 0, 9.0, 0, 0, 4.0, 0, 0]
-    bar [0, 8.5, 0, 0, 9.5, 0, 0, 9.0, 0, 0, 9.5, 0, 0, 8.5, 0, 0, 8.0, 0, 0, 9.0, 0, 0, 9.5, 0]
+    bar [9.0, 0, 0, 7.0, 0, 0, 7.5, 0, 0, 5.0, 0, 0, 8.5, 0, 0, 7.0, 0, 0, 9.0, 0, 0, 4.0, 0, 0]
+    bar [0, 8.5, 0, 0, 9.5, 0, 0, 9.0, 0, 0, 9.5, 0, 0, 8.0, 0, 0, 8.0, 0, 0, 9.0, 0, 0, 9.5, 0]
     bar [0, 0, 7.0, 0, 0, 10.0, 0, 0, 9.5, 0, 0, 6.5, 0, 0, 9.0, 0, 0, 7.5, 0, 0, 9.0, 0, 0, 5.5]
 ```
 
@@ -70,15 +70,15 @@ xychart-beta
     title "Final Weighted Score (out of 10)"
     x-axis ["SpecKit", "Extensions", "BMAD"]
     y-axis "Score" 0 --> 10
-    bar [7.19, 0, 0]
-    bar [0, 9.00, 0]
+    bar [7.13, 0, 0]
+    bar [0, 8.93, 0]
     bar [0, 0, 8.05]
 ```
 
 ### Category Wins Distribution
 
 ```mermaid
-%%{init: {'theme': 'neutral', 'themeVariables': {'pie1': '#4ECDC4', 'pie2': '#6C5CE7', 'pie3': '#FF6B8A', 'pie4': '#FFE66D', 'pieStrokeColor': '#ffffff', 'pieStrokeWidth': '3px', 'pieOpacity': '1', 'pieTitleTextColor': '#2D3436', 'pieSectionTextColor': '#2D3436', 'pieLegendTextColor': '#ffffff', 'cScale0': '#4ECDC4', 'cScale1': '#6C5CE7', 'cScale2': '#FF6B8A', 'cScale3': '#FFE66D', 'primaryTextColor': '#2D3436', 'secondaryTextColor': '#2D3436', 'background': '#ffffff', 'mainBkg': '#ffffff', 'secondBkg': '#ffffff', 'nodeBkg': '#ffffff', 'nodeBorder': '#ffffff'}}}%%
+%%{init: {'theme': 'neutral', 'themeVariables': {'pie1': '#4ECDC4', 'pie2': '#6C5CE7', 'pie3': '#FF6B8A', 'pie4': '#FFE66D', 'pieStrokeColor': '#ffffff', 'pieStrokeWidth': '3px', 'pieOpacity': '1', 'pieTitleTextColor': '#2D3436', 'pieSectionTextColor': '#2D3436'}}}%%
 pie title Category Wins
     "Extensions (3)" : 3
     "BMAD (3)" : 3
@@ -94,8 +94,8 @@ xychart-beta
     title "Halstead Metrics (lower is better)"
     x-axis ["Effort:SK", "Effort:Ex", "Effort:BM", "Volume:SK", "Volume:Ex", "Volume:BM", "Bugs:SK", "Bugs:Ex", "Bugs:BM"]
     y-axis "Value" 0 --> 2800
-    bar [2665, 0, 0, 610, 0, 0, 204, 0, 0]
-    bar [0, 1526, 0, 0, 518, 0, 0, 174, 0]
+    bar [2665, 0, 0, 610, 0, 0, 203, 0, 0]
+    bar [0, 1526, 0, 0, 518, 0, 0, 173, 0]
     bar [0, 0, 1090, 0, 0, 384, 0, 0, 128]
 ```
 
@@ -120,11 +120,11 @@ xychart-beta
 
 | Project | Score | Issues |
 |---------|-------|--------|
-| **SpecKit** | **9.68/10** | 12 warnings (broad-exception, unused imports/args, redefined-outer-name) |
-| **Extensions** | **9.32/10** | 23 warnings (line-too-long, global-statement, naming, broad-exception, duplicate-code) |
-| **BMAD** | **8.50/10** | 42 warnings (line-too-long ×38 in regions.py, broad-exception-caught ×3, unused-argument ×2, duplicate-code ×1) |
+| **SpecKit** | **9.68/10** | 12 warnings (broad-exception ×3, unused-import ×3, unused-argument ×3, too-many-instance-attributes ×1, redefined-outer-name ×1, missing-final-newline ×1) |
+| **Extensions** | **9.32/10** | ~23 warnings (line-too-long, global-statement, naming, broad-exception, duplicate-code) |
+| **BMAD** | **8.50/10** | ~42 warnings (line-too-long ×38 in regions.py, broad-exception-caught ×3, unused-argument, duplicate-code) |
 
-**Analysis**: SpecKit scores highest on Pylint with the fewest style violations. Extensions has moderate issues from its larger API surface. BMAD scores lowest primarily because `regions.py` contains hardcoded region data as long dictionary literals, generating 38 line-length warnings under Pylint's 100-char default (BMAD configures Ruff at 120). BMAD also has a duplicate-code finding between `api.py` and `sse.py` serialization patterns.
+**Analysis**: SpecKit scores highest on Pylint with the fewest style violations. Extensions has moderate issues from its larger API surface. BMAD scores lowest primarily because `regions.py` contains hardcoded region data as long dictionary literals, generating 38 line-length warnings under Pylint's 100-char default (BMAD configures Ruff at 120). BMAD also has a duplicate-code finding.
 
 **Verdict**: SpecKit wins on raw code quality. BMAD's low score is dominated by a single file's data definitions — not architectural issues.
 
@@ -151,10 +151,10 @@ All files in all three projects score **A** (>20 = excellent maintainability).
 | Project | Avg MI | Lowest MI File | Score |
 |---------|--------|---------------|-------|
 | **SpecKit** | 76.4 | `services/prober.py` | 41.63 |
-| **Extensions** | 74.1 | `engine/models.py` | 49.83 |
+| **Extensions** | 70.7 | `engine/models.py` | 49.83 |
 | **BMAD** | 70.2 | `app.py` | 42.38 |
 
-**Analysis**: All three projects have excellent maintainability. SpecKit has the highest average MI. BMAD's `app.py` is the densest file due to its startup/shutdown lifecycle management and CORS middleware. BMAD has the lowest average MI due to more concentrated logic in `app.py` and `sse.py`.
+**Analysis**: All three projects have excellent maintainability. SpecKit has the highest average MI, partly due to having more small model/init files. BMAD's `app.py` is the densest file due to its startup/shutdown lifecycle management and CORS middleware. Extensions and BMAD have nearly identical averages.
 
 **Verdict**: All A-grade across the board. SpecKit has a slight edge on average MI.
 
@@ -171,7 +171,7 @@ All files in all three projects score **A** (>20 = excellent maintainability).
 | **Blank lines** | 141 | 156 | 146 | 195 | 242 | 303 |
 | **Comment-to-code ratio** | 0% | 1–2% | 2–3% | — | — | — |
 
-**Analysis**: BMAD is the most compact source (517 SLOC), 14% smaller than SpecKit and 18% smaller than Extensions. BMAD has the most inline comments (16) of any source, and its tests are moderate in size (912 SLOC). Extensions still leads on total test SLOC (1,142).
+**Analysis**: BMAD is the most compact source (517 SLOC), 14% smaller than SpecKit and 18% smaller than Extensions. BMAD has the most inline comments (16) of any source. Extensions leads on total test SLOC (1,142).
 
 **Verdict**: BMAD produces the most compact source code. Extensions produces the most thorough tests by volume. BMAD has the best comment-to-code ratio.
 
@@ -224,7 +224,7 @@ All three projects have the same single finding: **B104 — Possible binding to 
 | Metric | SpecKit | Extensions | BMAD |
 |--------|---------|------------|------|
 | **Test count** | 65 | 102 | 107 |
-| **Coverage %** | 94.29% | 92.24% | 99.01% |
+| **Coverage %** | 94.27% | 92.24% | 99.01% |
 | **Test SLOC** | 838 | 1,142 | 912 |
 | **Test-to-source ratio** | 1.39:1 | 1.82:1 | 1.76:1 |
 
@@ -242,9 +242,9 @@ Halstead metrics measure the **cognitive effort** required to understand code ba
 |--------|---------|------------|------|--------|
 | **Total Volume** | 609.96 | 518.32 | 383.60 | BMAD (-37%) |
 | **Total Effort** | 2,664.53 | 1,525.71 | 1,090.19 | BMAD (-59%) |
-| **Total Time (seconds)** | 148.1 | 84.7 | 60.6 | BMAD (-59%) |
-| **Estimated Bugs** | 0.204 | 0.174 | 0.128 | BMAD (-37%) |
-| **Avg Difficulty** | 2.68 | 1.78 | 1.59 | BMAD (-41%) |
+| **Total Time (seconds)** | 148.0 | 84.8 | 60.6 | BMAD (-59%) |
+| **Estimated Bugs** | 0.203 | 0.173 | 0.128 | BMAD (-37%) |
+| **Avg Difficulty** | 2.33 | 1.86 | 1.59 | BMAD (-32%) |
 
 **Top effort hotspots:**
 
@@ -266,22 +266,20 @@ Lizard measures NLOC, cyclomatic complexity (CCN), token count, and parameter co
 
 | Metric | SpecKit | Extensions | BMAD |
 |--------|---------|------------|------|
-| **Total Functions** | 58 | 29 | 36 |
-| **Total NLOC** | 818 | 629 | 517 |
-| **Avg NLOC/function** | 11.6 | 13.7 | 8.8 |
-| **Avg CCN/function** | 2.6 | 3.1 | 2.2 |
-| **Avg tokens/function** | 80.7 | 86.4 | 67.5 |
+| **Total Functions** | 41 | 29 | 36 |
+| **Total NLOC** | 604 | 629 | 517 |
+| **Avg NLOC/function** | 11.0 | 13.7 | 8.8 |
+| **Avg CCN/function** | 2.5 | 3.1 | 2.2 |
+| **Avg tokens/function** | 77.4 | 86.4 | 67.5 |
 | **Threshold warnings** | 0 | 0 | 0 |
-
-**Note**: SpecKit's count of 58 includes JavaScript functions from `app.js` (17 functions). Python-only: SpecKit has ~41 functions vs Extensions' 29 vs BMAD's 36.
 
 **Largest functions by NLOC:**
 
 | SpecKit | NLOC | Extensions | NLOC | BMAD | NLOC |
 |---------|------|------------|------|------|------|
-| `probe_region` | 44 | `probe_region` | 43 | `sse_handler` | 24 |
-| `_serialize_cycle` | 42 | `build_vendor_summaries` | 40 | `probe_region` | 22 |
-| `run_cycle` | 39 | `get_latency` | 31 | `run_probe_cycle` | 20 |
+| `_serialize_cycle` | 42 | `probe_region` | 43 | `sse_handler` | 24 |
+| `compute_vendor_summaries` | 37 | `build_vendor_summaries` | 40 | `probe_region` | 22 |
+| `_summarize_bucket` | 34 | `get_latency` | 31 | `run_probe_cycle` | 20 |
 
 **Analysis**: BMAD has the smallest functions on average (8.8 NLOC) and lowest average CCN (2.2). Its largest function (`sse_handler` at 24 NLOC) is nearly half the size of the largest in SpecKit or Extensions. All three projects have zero threshold violations.
 
@@ -300,7 +298,7 @@ Lizard measures NLOC, cyclomatic complexity (CCN), token count, and parameter co
 | **F824 (unused global)** | 0 | 1 | 0 |
 | **Total violations** | **29** | **50** | **125** |
 
-**Analysis**: BMAD has the most Flake8 violations (125), overwhelmingly from E501 line-length in `regions.py` (hardcoded region dictionaries). BMAD configures Ruff at 120 chars but Flake8 defaults to 79. Excluding `regions.py`, BMAD would have ~30 violations — comparable to SpecKit. BMAD has zero unused-import findings. SpecKit remains cleanest under strict PEP 8.
+**Analysis**: BMAD has the most Flake8 violations (125), overwhelmingly from E501 line-length in `regions.py` (hardcoded region dictionaries). BMAD configures Ruff at 120 chars but Flake8 defaults to 79. Excluding `regions.py`, BMAD would have ~4 violations — the fewest. SpecKit remains cleanest under strict PEP 8.
 
 **Verdict**: SpecKit is cleanest under strict PEP 8. BMAD's high count is entirely from data-definition line lengths, not code quality issues.
 
@@ -315,8 +313,8 @@ The `cohesion` tool measures how well class methods share instance variables (hi
 | Class | Cohesion | Assessment |
 |-------|----------|------------|
 | `MeasurementHistory` | 62.5% | Good — methods share state well |
-| `LatencyProber` | 58.3% | Acceptable — some utility methods |
-| `MeasurementScheduler` | 27.8% | Low — too many attributes (10), some methods use few |
+| `LatencyProber` | 58.33% | Acceptable — some utility methods |
+| `MeasurementScheduler` | 27.78% | Low — too many attributes (10), some methods use few |
 
 **Extensions behavioral classes:** None — Extensions uses a **purely functional architecture** with module-level functions. No class-based state management.
 
@@ -393,8 +391,8 @@ Weighting the metrics into 8 categories (14 tools, 30+ individual metrics):
 | **Cognitive Complexity** (Halstead effort + volume + bugs) | 15% | 7.0/10 | 9.5/10 | 10.0/10 | BMAD |
 | **Test Quality** (count + coverage + ratio) | 15% | 7.5/10 | 9.0/10 | 9.5/10 | BMAD |
 | **Documentation** (docstrings + canonical + artifacts) | 15% | 5.0/10 | 9.5/10 | 6.5/10 | Extensions |
-| **Maintainability** (MI + dead code + Lizard) | 10% | 8.5/10 | 8.5/10 | 9.0/10 | BMAD |
-| **Architecture** (cohesion + coupling + import density) | 10% | 7.5/10 | 8.0/10 | 7.5/10 | Extensions |
+| **Maintainability** (MI + dead code + Lizard) | 10% | 8.5/10 | 8.0/10 | 9.0/10 | BMAD |
+| **Architecture** (cohesion + coupling + import density) | 10% | 7.0/10 | 8.0/10 | 7.5/10 | Extensions |
 | **Security** (Bandit) | 10% | 9.0/10 | 9.0/10 | 9.0/10 | 3-way Tie |
 | **Project Maturity** (changelog, drift, env, agents, linting) | 10% | 4.0/10 | 9.5/10 | 5.5/10 | Extensions |
 
@@ -402,8 +400,8 @@ Weighting the metrics into 8 categories (14 tools, 30+ individual metrics):
 
 | Project | Weighted Score |
 |---------|---------------|
-| **SpecKit** | **7.19/10** |
-| **Extensions** | **9.00/10** |
+| **SpecKit** | **7.13/10** |
+| **Extensions** | **8.93/10** |
 | **BMAD** | **8.05/10** |
 
 ### Metric Wins Tally
@@ -420,6 +418,7 @@ Weighting the metrics into 8 categories (14 tools, 30+ individual metrics):
 ## Conclusions
 
 ### Where BMAD Clearly Wins
+
 1. **Cognitive complexity** — 59% less Halstead effort than SpecKit, 29% less than Extensions — the single largest measurable gap
 2. **Test quality** — 107 tests with 99.01% coverage — best of all three on both metrics
 3. **Code compactness** — 517 SLOC, 14–18% smaller than competitors, with the best comment ratio
@@ -429,18 +428,22 @@ Weighting the metrics into 8 categories (14 tools, 30+ individual metrics):
 7. **Class design** — `LatencyStore` at 100% cohesion, the only perfect-cohesion class
 
 ### Where Extensions Clearly Wins
+
 1. **Documentation depth** — 6 canonical docs, AGENTS.md, CHANGELOG, DRIFT-LOG, .env.example (22 total docs)
 2. **Project maturity signals** — Formatting config, DocGuard integration (88/100 A), ALCOA+ compliance
 3. **Architecture** — Lowest import density (8.9%), fewest internal coupling links (tied with SpecKit)
 4. **Operational readiness** — Structured JSON logging, global error handling middleware, OpenAPI docs
 
 ### Where Base SpecKit Wins
+
 1. **Raw Pylint score** — 9.68/10, highest of all three; fewest style issues
 2. **Fewer Flake8 violations** — 29 vs 50 (Extensions) vs 125 (BMAD) under strict PEP 8
 3. **Highest maintainability index** — 76.4 average MI, best of the three
 
 ### Key Architectural Insight
+
 The three projects represent fundamentally different paradigms for the same problem:
+
 - **SpecKit** → OOP with 3 behavioral classes (`MeasurementHistory`, `LatencyProber`, `MeasurementScheduler`), class cohesion ranging 27–62%
 - **Extensions** → Functional architecture with module-level functions, no behavioral classes, global shared state
 - **BMAD** → Hybrid architecture with 2 focused behavioral classes (`LatencyStore`, `SSEBroadcaster`) alongside standalone functions
@@ -448,7 +451,8 @@ The three projects represent fundamentally different paradigms for the same prob
 The Halstead metrics reveal that BMAD's hybrid approach produces the **simplest code to comprehend** (-59% effort vs SpecKit), while Extensions' functional approach is second-best (-43% vs SpecKit). The OOP approach produces **more numerous, smaller units** that score better on traditional linting metrics.
 
 ### Overall Verdict
-**Extensions** (9.00/10) remains the highest-scoring project overall, winning on documentation, project maturity, and architecture. **BMAD** (8.05/10) produces the **most cognitively simple, well-tested, and compact code** — winning cognitive complexity, testing, and maintainability. **SpecKit** (7.19/10) produces the **cleanest code under traditional linting** but lacks both the operational maturity of Extensions and the code simplicity of BMAD.
+
+**Extensions** (8.93/10) remains the highest-scoring project overall, winning on documentation, project maturity, and architecture. **BMAD** (8.05/10) produces the **most cognitively simple, well-tested, and compact code** — winning cognitive complexity, testing, and maintainability. **SpecKit** (7.13/10) produces the **cleanest code under traditional linting** but lacks both the operational maturity of Extensions and the code simplicity of BMAD.
 
 The ideal workflow would combine BMAD's code quality outcomes with Extensions' documentation and operational maturity practices.
 

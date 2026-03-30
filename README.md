@@ -10,7 +10,7 @@ The goal: **compare the code quality outcomes of SpecKit (base), SpecKit+Extensi
 
 **Extensions wins 3 of 8 categories. BMAD wins 3. SpecKit wins 1. 1 is a 3-way tie.**
 
-**Extensions** (9.00/10) leads overall thanks to documentation, project maturity, and architecture. **BMAD** (8.05/10) produces the most cognitively simple, well-tested, and compact code. **SpecKit** (7.19/10) produces the cleanest code under traditional linting but lacks both operational maturity and code simplicity.
+**Extensions** (8.93/10) leads overall thanks to documentation, project maturity, and architecture. **BMAD** (8.05/10) produces the most cognitively simple, well-tested, and compact code. **SpecKit** (7.13/10) produces the cleanest code under traditional linting but lacks both operational maturity and code simplicity.
 
 The most impactful finding: **Halstead metrics revealed BMAD's hybrid architecture requires 59% less cognitive effort than SpecKit and 29% less than Extensions** — a dimension traditional linting tools don't capture.
 
@@ -26,23 +26,23 @@ The most impactful finding: **Halstead metrics revealed BMAD's hybrid architectu
 | Cognitive Complexity (Halstead) | 7.0 | 9.5 | 10.0 | **BMAD** |
 | Test Quality | 7.5 | 9.0 | 9.5 | **BMAD** |
 | Documentation | 5.0 | 9.5 | 6.5 | **Extensions** |
-| Maintainability (MI + Lizard) | 8.5 | 8.5 | 9.0 | **BMAD** |
-| Architecture (cohesion + coupling) | 7.5 | 8.0 | 7.5 | **Extensions** |
+| Maintainability (MI + Lizard) | 8.5 | 8.0 | 9.0 | **BMAD** |
+| Architecture (cohesion + coupling) | 7.0 | 8.0 | 7.5 | **Extensions** |
 | Security (Bandit) | 9.0 | 9.0 | 9.0 | 3-way Tie |
 | Project Maturity | 4.0 | 9.5 | 5.5 | **Extensions** |
-| **Weighted Total** | **7.19** | **9.00** | **8.05** | **Extensions** |
+| **Weighted Total** | **7.13** | **8.93** | **8.05** | **Extensions** |
 
 ### Headline Metrics
 
 | Metric | SpecKit | Extensions | BMAD |
 |--------|---------|------------|------|
 | Pylint Score | **9.68**/10 | 9.32/10 | 8.50/10 |
-| Halstead Effort | 2,664 | 1,526 | **1,090** (-59%) |
+| Halstead Effort | 2,665 | 1,526 | **1,090** (-59%) |
 | Test Count | 65 | 102 | **107** |
-| Test Coverage | 94.29% | 92.24% | **99.01%** |
+| Test Coverage | 94.27% | 92.24% | **99.01%** |
 | Documentation Artifacts | 9 | **22** | ~10 |
 | Docstring Coverage | 90.8% | 92.7% | **96.1%** |
-| Predicted Bugs (Halstead) | 0.204 | 0.174 | **0.128** (-37%) |
+| Predicted Bugs (Halstead) | 0.203 | 0.173 | **0.128** (-37%) |
 
 > **For the full 500+ line breakdown with per-tool analysis, hotspot identification, and methodology details, see [`comparison-report.md`](comparison-report.md).**
 
@@ -69,10 +69,10 @@ A real-time web application that measures HTTPS latency to all Azure, AWS, and G
 
 ## Repository Structure
 
-```
+```text
 ├── SpecKit/                    # Built with base SpecKit workflow (8 workflows)
 │   ├── src/cloudlatency/       # OOP architecture (classes)
-│   ├── tests/                  # 65 tests, 94.29% coverage
+│   ├── tests/                  # 65 tests, 94.27% coverage
 │   ├── specs/                  # 1 feature spec (001-cloud-latency-monitor)
 │   └── journey.md              # Full development narrative
 │
@@ -100,7 +100,7 @@ A real-time web application that measures HTTPS latency to all Azure, AWS, and G
 ### SpecKit (Base) — 8 workflows
 
 | Workflow | Purpose |
-|----------|---------- |
+|----------|---------|
 | `speckit.constitution` | Establish project principles |
 | `speckit.specify` | Create feature specification |
 | `speckit.clarify` | Resolve spec ambiguities |
